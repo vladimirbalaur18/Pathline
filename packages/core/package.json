@@ -1,0 +1,44 @@
+{
+  "name": "@pathline/core",
+  "version": "0.1.0",
+  "description": "Pathline core - a TypeScript business-flow framework for modeling, executing, testing, tracing, and visualizing complex application operations.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js",
+      "require": "./dist/testing/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "prepare": "tsup"
+  },
+  "keywords": [
+    "flow",
+    "workflow",
+    "business-logic",
+    "orchestration",
+    "saga",
+    "trace",
+    "typescript"
+  ],
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  }
+}

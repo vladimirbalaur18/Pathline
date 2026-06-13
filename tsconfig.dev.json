@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pathline/core": ["packages/core/src/index.ts"],
+      "@pathline/core/testing": ["packages/core/src/testing/index.ts"],
+      "@pathline/nestjs": ["packages/nestjs/src/index.ts"]
+    }
+  }
+}
