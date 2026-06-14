@@ -1,4 +1,7 @@
 # Pathline
+<img width="800px" height="527px" alt="logo_pathline_" src="https://github.com/user-attachments/assets/7f77da39-b1da-44e8-954a-141fdffd1ce5" />
+
+
 
 **Write complex backend operations as one readable flow — then run, test, trace, and diagram it.**
 
