@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "NestJS adapter for Pathline - thin wiring for FlowRunner, exception filter, and trace interceptor.",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vladimirbalaur18/Pathline.git",
+    "directory": "packages/nestjs"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

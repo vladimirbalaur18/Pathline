@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Pathline core - a TypeScript business-flow framework for modeling, executing, testing, tracing, and visualizing complex application operations.",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vladimirbalaur18/Pathline.git",
+    "directory": "packages/core"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
