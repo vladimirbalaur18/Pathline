@@ -1,6 +1,6 @@
 {
   "name": "@pathline/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pathline core - a TypeScript business-flow framework for modeling, executing, testing, tracing, and visualizing complex application operations.",
   "license": "MIT",
   "type": "module",
