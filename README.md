@@ -156,6 +156,8 @@ result.trace;         // ordered timeline of stages, guards, branches, retries, 
 
 The trace shows the business path that executed and exactly where it stopped — including which branch was selected and which compensations ran.
 
+For step-through debugging, break in operation handlers (not `.do()` calls) — see [debugging playbook](docs/adoption/debugging.md).
+
 ### Tests that read like the spec
 
 Test one leaf in isolation, with no flow and no framework boot:
@@ -242,9 +244,23 @@ export const loadWorkspace = operation<Ctx, Deps>('Load workspace')
 
 The flow says *what* happens. The operation says *how* one step works. Each is replaceable and unit-testable on its own.
 
+## Limits & composition
+
+Pathline v1 is **in-process** — it orchestrates within a single request or job invocation, not across process restarts.
+
+- A flow runs in one process. If a Lambda times out or a container restarts mid-flow, state is lost and `.onFailure()` compensations do **not** run.
+- Pathline is **not** a replacement for Temporal, Inngest, or AWS Step Functions.
+
+**Recommended pattern:** let a durable queue or job runner own survival across crashes; let Pathline own readable business logic inside each invocation:
+
+```
+SQS / BullMQ / Inngest job → runPaidAgentFlow.run(ctx) → idempotent side effects
+```
+
+Make externally-visible effects [idempotent](docs/adoption/idempotency.md). For events and webhooks, use a [transactional outbox](docs/adoption/transactional-outbox.md). Details: [durable vs in-process](docs/adoption/durable-vs-in-process.md).
+
 ## What Pathline is not
 
-- Not a durable workflow engine. Pathline v1 is **in-process**: if the process crashes mid-flow it does not resume. For durability, run a flow inside a queue/job worker — see [durable vs in-process](docs/adoption/durable-vs-in-process.md).
 - Not a NestJS replacement, a visual editor, a graph-exporter, or a rules engine. It's a way to author and run real application operations in plain TypeScript.
 
 ## Packages
@@ -278,7 +294,8 @@ pnpm bench          # runtime-overhead sanity benchmarks
 ## Documentation
 
 - [Getting started](docs/getting-started.md) · [Concepts](docs/concepts.md) · [NestJS](docs/nestjs.md) · [Testing](docs/testing.md) · [Tracing](docs/tracing.md) · [Visualization](docs/visualization.md)
-- Adoption: [migrating an existing service](docs/adoption/migrating-existing-service.md) · [when not to use Pathline](docs/adoption/when-not-to-use-pathline.md) · [production checklist](docs/adoption/production-checklist.md) · [Nest request scope](docs/adoption/nest-request-scope.md) · [error handling](docs/adoption/error-handling.md) · [observability](docs/adoption/observability.md) · [security & redaction](docs/adoption/security-redaction.md) · [durable vs in-process](docs/adoption/durable-vs-in-process.md) · [transactions & side effects](docs/adoption/transactions-and-side-effects.md) · [idempotency](docs/adoption/idempotency.md) · [transactional outbox](docs/adoption/transactional-outbox.md)
+- RFC: [context type safety](docs/rfc/context-type-safety.md)
+- Adoption: [migrating an existing service](docs/adoption/migrating-existing-service.md) · [when not to use Pathline](docs/adoption/when-not-to-use-pathline.md) · [production checklist](docs/adoption/production-checklist.md) · [debugging](docs/adoption/debugging.md) · [Nest request scope](docs/adoption/nest-request-scope.md) · [error handling](docs/adoption/error-handling.md) · [observability](docs/adoption/observability.md) · [security & redaction](docs/adoption/security-redaction.md) · [durable vs in-process](docs/adoption/durable-vs-in-process.md) · [transactions & side effects](docs/adoption/transactions-and-side-effects.md) · [idempotency](docs/adoption/idempotency.md) · [transactional outbox](docs/adoption/transactional-outbox.md)
 
 ## License
 

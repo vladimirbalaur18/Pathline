@@ -2,6 +2,8 @@
 
 Every run returns a `FlowRunResult` with a full `trace` and stable identifiers.
 
+For a practical debugging workflow (leaf breakpoints vs flow traces, VS Code tips), see [adoption/debugging.md](adoption/debugging.md).
+
 ## FlowRunResult
 
 ```ts

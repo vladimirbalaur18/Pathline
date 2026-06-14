@@ -71,6 +71,9 @@ would block legitimate writes. Returned patches *are* narrowed when you call
 Runtime warning codes: `UNUSED_CONTEXT_READ`, `UNDECLARED_CONTEXT_READ`,
 `UNUSED_CONTEXT_WRITE`, `UNDECLARED_CONTEXT_WRITE`.
 
+**Roadmap:** compile-time context availability across stages (`requires()` /
+`provides()`) is explored in [RFC: context type safety](../rfc/context-type-safety.md).
+
 ### Other primitives (audit)
 
 | Primitive | Typed declarations today | Notes |

@@ -69,4 +69,5 @@ const result = await flow.run(initialContext, {
 
 - [Concepts](concepts.md) - stages, guards, branches, parallel, repeat, finally.
 - [Testing](testing.md) - leaf and full-flow tests.
-- [Tracing](tracing.md) - trace events and debugging.
+- [Tracing](tracing.md) - trace events and run results.
+- [Debugging](adoption/debugging.md) - leaf breakpoints, flow traces, VS Code tips.
